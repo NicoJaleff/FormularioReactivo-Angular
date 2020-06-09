@@ -1,0 +1,64 @@
+
+<div>
+    <button type="button" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#exampleModal" (click)="add()">Agregar</button>
+</div>
+
+<div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Dni</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let persona of personas">
+      <th scope="row">{{persona.id}}</th>
+      <td>{{persona.nombre}}</td>
+      <td>{{persona.apellido}}</td>
+      <td>{{persona.dni}}</td>
+      <td>
+        <button type="button" class="btn btn-success" (click)="update(persona)" data-toggle="modal" data-target="#exampleModal">Editar</button>  
+        <button type="button" class="btn btn-danger" (click)="delete(persona.id, cont)">Borrar</button>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">PERSONA</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form id="formPersona" (ngSubmit)="save(miFornmulario)" [formGroup]="miFornmulario" >
+            <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" >
+            <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
+            <input class="form-control" type="text" placeholder="Dni" formControlName="dni">
+      </form>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="submit"  class="btn btn-primary btn-block" (click)="save(miFornmulario)" [disabled]="formGroup.invalid" #btnClose #btnClose>Guardar</button>
+        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal" #btnClose>Salir</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
